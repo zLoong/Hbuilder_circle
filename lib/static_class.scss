@@ -1,0 +1,492 @@
+@import './mixins.scss';
+@include exports('staticClass') {
+    // for横屏
+    .G-landspace{
+        max-width: 570px;
+        margin-right: auto!important;
+        margin-left: auto!important;
+    }
+    @media only screen and (min-width: 460px) and (max-width: 570px) {
+        .G-landspace{
+            max-width: 460px;
+            margin-right: auto!important;
+            margin-left: auto!important;
+        }
+    }
+    @media only screen and (min-width: 0px) and (max-width: 460px){
+        .G-landspace{
+            max-width: 100%;
+            margin-right: auto!important;
+            margin-left: auto!important;
+        }
+    }
+    /*图片占位符*/
+    %G-img-holder {
+        background-color: #ccc;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    %G-img-wrap,.G-img-wrap{
+        @extend %G-font24;
+        @extend %G-bgcolor-D5;
+        position: relative;
+        display: inline-block;
+        &.is-error{
+            &::before{
+                position: absolute;
+                display: block;
+                font-family: 'tagIcon';
+                -webkit-font-smoothing: antialiased;
+                @extend %G-h-80;
+                @extend %G-lh-80;
+                @extend %G-mg-t--40;
+                @extend %G-color-D4;
+                width: 100%;
+                top: 45%;
+                font-size: 350%;
+                text-align: center;
+                content: '\003A';
+            }
+            img{visibility: hidden;}
+        }
+    }
+    @if $G-night{
+        .G-night{
+            %G-img-wrap,.G-img-wrap{
+                position: relative;
+                &:after{
+                    content: '';
+                    width:100%;
+                    height: 100%;
+                    position: absolute;
+                    top:0;
+                    left: 0;
+                    background-color:rgba(0,0,0,.4);                
+                    -webkit-pointer-events:none;
+                            pointer-events:none;
+                }
+            }
+        }
+        %G-img-opacity,.G-img-opacity{
+            opacity:.4;
+        }
+    }
+    
+    /*clearfix*/
+    
+    %G-clearfix,
+    .G-clearfix {
+        &:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+    }
+    /*hide overflow text*/
+    
+    .G-hide-overflow-text,
+    %G-hide-overflow-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    %G-hide-2rows-overflow-text {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-right:-2px;
+    }
+    /*不定义颜色的1px边框, 定义颜色请使用minix*/
+    
+    .G-border-bottom,
+    %G-border-bottom {
+        position: relative;
+        border-bottom: none;
+        &::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @extend %G-bgcolor-D5;
+            -webkit-transform: scaleY(0.5);
+            -webkit-transform-origin: 0 100%;
+            pointer-events: none;
+        }
+    }
+    .G-border-top,
+    %G-border-top {
+        border-top: none;
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            left: 0;
+            right: 0;
+            top: 0;
+            @extend %G-bgcolor-D5;
+            -webkit-transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+        }
+    }
+    .G-border-right,
+    %G-border-right {
+        border-right: none;
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            right: 0;
+            top: 0;
+            @extend %G-bgcolor-D5;
+            -webkit-transform: scaleX(0.5);
+            -webkit-transform-origin: 100% 0;
+            pointer-events: none;
+        }
+    }
+    .G-border-left,
+    %G-border-left {
+        border-left: none;
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            @extend %G-bgcolor-D5;
+            -webkit-transform: scaleX(0.5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+        }
+    }
+    .G-border-tb,
+    %G-border-tb {
+        position: relative;
+        border-top: none;
+        border-bottom: none;
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            @extend %G-bdcolor-D5;
+            -webkit-transform: scale(.5, .5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    }
+    .G-border-tl,
+    %G-border-tl {
+        position: relative;
+        border-top: none;
+        border-left: none;
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0;
+            border-top: 1px solid #e0e0e0;
+            border-left: 1px solid #e0e0e0;
+            @extend %G-bdcolor-D5;
+            -webkit-transform: scale(.5, .5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    }
+    .G-border-rb,
+    %G-border-rb {
+        position: relative;
+        border-right: none;
+        border-bottom: none;
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            @extend %G-bdcolor-D5;
+            -webkit-transform: scale(.5, .5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    }
+    .G-border,
+    %G-border {
+        border: none;
+        position: relative;
+        overflow: visible;
+        &:after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0;
+            border-width: 1px;
+            border-style: solid;
+            @extend %G-bdcolor-D5;
+            -webkit-transform: scale(.5, .5);
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    }
+    @media only screen and (-webkit-device-pixel-ratio: 1) {
+        .G-border-bottom, %G-border-bottom {
+            &:after {
+                -webkit-transform: scale(1, 1);
+            }
+        }
+        .G-border-top,
+        %G-border-top {
+            &:after {
+                -webkit-transform: scale(1, 1)
+            }
+        }
+        .G-border-left,
+        %G-border-left {
+            &:after {
+                -webkit-transform: scale(1, 1)
+            }
+        }
+        .G-border-right,
+        %G-border-right {
+            &:after {
+                -webkit-transform: scale(1, 1)
+            }
+        }
+        .G-border-tb,
+        %G-border-tb,
+        .G-border-tl,
+        %G-border-tl,
+        .G-border-rb,
+        %G-border-rb {
+            &:before {
+                width: 100%;
+                height: 100%;
+                -webkit-transform: scale(1, 1)
+            }
+        }
+
+        .G-border,
+        %G-border {
+            &:after {
+                width: 100%;
+                height: 100%;
+                -webkit-transform: scale(1, 1)
+            }
+        }
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) and (-webkit-max-device-pixel-ratio: 3.5) {
+        .G-border-bottom, %G-border-bottom {
+            &:after {
+                -webkit-transform: scaleY(.33333333333333333);
+            }
+        }
+        .G-border-top,
+        %G-border-top {
+            &:after {
+                -webkit-transform: scaleY(.33333333333333333)
+            }
+        }
+        .G-border-left,
+        %G-border-left {
+            &:after {
+                -webkit-transform: scaleX(.33333333333333333)
+            }
+        }
+        .G-border-right,
+        %G-border-right {
+            &:after {
+                -webkit-transform: scaleX(.33333333333333333)
+            }
+        }
+        .G-border-tb,
+        %G-border-tb,
+        .G-border-tl,
+        %G-border-tl,
+        .G-border-rb,
+        %G-border-rb {
+            &:before {
+                width: 300%;
+                height: 300%;
+                -webkit-transform: scale(.33333333333333333, .33333333333333333)
+            }
+        }
+        .G-border,
+        %G-border {
+            &:after {
+                width: 333%;
+                height: 333%;
+                -webkit-transform: scale(.3, .3);
+            }
+        }
+    }
+    @media only screen and (-webkit-device-pixel-ratio: 4),
+    only screen and (-webkit-min-device-pixel-ratio: 3.6) and (-webkit-max-device-pixel-ratio: 4) {
+        .G-border-bottom, %G-border-bottom {
+            &:after {
+                -webkit-transform: scaleY(.25);
+            }
+        }
+        .G-border-top,
+        %G-border-top {
+            &:after {
+                -webkit-transform: scaleY(.25)
+            }
+        }
+        .G-border-left,
+        %G-border-left {
+            &:after {
+                -webkit-transform: scaleX(.25)
+            }
+        }
+        .G-border-right,
+        %G-border-right {
+            &:after {
+                -webkit-transform: scaleX(.25)
+            }
+        }
+        .G-border-tb,
+        %G-border-tb,
+        .G-border-tl,
+        %G-border-tl,
+        .G-border-rb,
+        %G-border-rb {
+            &:before {
+                width: 400%;
+                height: 400%;
+                -webkit-transform: scale(.25, .25)
+            }
+        }
+
+        .G-border,
+        %G-border {
+            &:after {
+                width: 400%;
+                height: 400%;
+                -webkit-transform: scale(.25, .25);
+            }
+        }
+    }
+    //左图右文字
+    //左图右文字列表
+    %flexboxItem-middle {
+        display: -webkit-box;
+        -webkit-box-align: center;
+    }
+    %list-last-child {
+        &:last-child::after {
+            display: none;
+        }
+    }
+    %G-novel-li {
+        position: relative;
+        @extend %flexboxItem-middle;
+        @extend %G-pd-l-32;
+        @extend %G-pd-r-32;
+        @include border-bottom($boolean: false);
+        @extend %list-last-child;
+        @extend %G-pd-t-32;
+        @extend %G-pd-b-32;
+        .mod-book--items-info, .mod-items--info {
+            -webkit-box-flex: 1;
+        }
+        h1 {
+            @extend %G-font32;
+            @extend %G-color-A1;
+        }
+        p {
+            @extend %G-hide-2rows-overflow-text;
+            @extend %G-color-A3;
+            @extend %G-font24;
+            @extend %G-lh-36;
+            @extend %G-mg-t-24;
+            span {
+                @extend %G-mg-r-16;
+            }
+        }
+        .mod-book--items-info-basic {
+            -webkit-box-orient: horizontal;
+            @extend %G-font22;
+            &>* {
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 60%;
+                @extend %G-lh-32;
+            }
+            &>span+span {
+                @extend %G-hide-overflow-text;
+                -webkit-box-flex: 1;
+                padding: 0;
+                text-align: right;
+                margin:0;
+                span {
+                    display: inline-block;
+                    text-align: center;
+                    @include border($color: D5, $radius: 40px);
+                    @extend %G-pd-l-16;
+                    @extend %G-pd-r-16;
+                    @extend %G-mg-l-8;
+                    @extend %G-mg-r-0;
+                    @extend %G-lh-30;
+                }
+            }
+        }
+        &.active {
+            @extend %G-bgcolor-D3;
+        }
+    }
+}
+
+//base64图片
+%G-base64img-star {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAb1BMVEUAAAC/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v78EsAWFAAAAJHRSTlMA+vQVCZoFyZ6NaBzr3IZvT0Q31dC6fjMjkxDksZhiW1UnrKusgfKTAAABUElEQVRIx5XV2XaDIBCAYUAFNO7GaPaknfd/xraKlhy24b/mu/CMDMRV15HYhIgVLUAbSQaAY5x4wm/PGMGrP1LxCFLAUoEX6XUl1xRNGlA1WHEpN1JekOQEeyecSNg/YQmK5KCVY8SB6YQdECSDj7LwSDr6SWiXek73jRw2oKNBNn1qni7kkYInepTF5vhUZPppv8uKiRMJkUnCxzgxckIuIkaI5XuSCi8q9QPNJVaUM1H1DCdYr60gihG0NS67N3MV1GFRmz9woLu5um5+cePEKBWhEZolVWiEZg83eYSWkdkJc+txG2B0k9FBBjcZHIS5CbOLBDwlVjL5yGQlrY+0VtL4SBPe+FRKGn4BvjSQzYTMmYa+rUTs4HxQ78Z9R8JKSjWCFSh0VsMqbSJdQa7AjvIVcQt5LyCxjHhBbwvpgNUKGKhm0BGzlwIO9CJbP/eImuF3ghjBAAAAAElFTkSuQmCC) left top no-repeat;
+    background-size: auto 100%;
+}
+
+%G-base64img-star-inner {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAflBMVEUAAAD/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg3/qg0uIB5QAAAAKXRSTlMAFfsJ9ZrJno1o+Abchk9ENwLq1dAfG++6fm0zkyQQ5LGYc2JbVayrJ9D/OWUAAAFfSURBVEjHldXXcoMwEEBRCZAEFs1gDAb3kmT//weT0CJH/T75QWc8zMIK6SoK5NmWUl+SA+Sef1ID7LZe5Ak/PX0ET39Jyj1IAmOJuwgvE7mEzuQOc3dXcW4XUp0dyQHWDm4Ct3+kxU4kBqHYRTQbkUR7B0LgLWIfSRG8k6AIDafLntULEFHN+jKUTydsJ56W3Y4li+NDQsTTZkeSgSMGnjHEOz/RcYTO1EfQ8Xlw6i7S+QU6Va6iOqG5MnITUSmsoMBFBLn0sRuTV0FmF9n/XUds4ibvx6tZXBW7M6S2Ecrh1DZCuYeePGzLSO7g8tW7bYBOTzoNqfWk1pBITyK1wGAIK8lgIoOS5CaSK0lvIr194weMBfYb4APWNqRBqCHCHfCpJHQFx2a+N24rokpSLUC4UvbHGVUqEU4zi0cgoHiaMFeQrxFgxYhHdFKQAtpsAjLKIiiQ3EsEMnqtv78BN1mxBVNgUskAAAAASUVORK5CYII=) left top no-repeat;
+    background-size: auto 100%;
+}
+
+@if $G-night{
+    .G-night{
+        %G-base64img-star,%G-base64img-star-inner{
+            opacity: .4;
+        }
+    }
+}

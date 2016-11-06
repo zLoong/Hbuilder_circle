@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'tagIcon';
+    src:  url('http://wapstatic.kf0309.3g.qq.com/guide/qqbrowser_trunk/fonts/icon.ttf') format('truetype'), url('../fonts/icon.woff') format('woff'), url('../fonts/icon.eot') format('embedded-opentype'), url('../fonts/icon.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@import "../css-reset/index.scss";
+@import "../lib/global.scss";
+@import "../css-fonticon/index.scss";
+@import "../mod-5star/index.scss";
+@import "../mod-alert/index.scss";
+@import "../mod-advert/index.scss";
+@import "../mod-banner/index.scss";
+@import "../mod-card/index.scss";
+@import "../mod-card3col/index.scss";
+@import "../mod-closead/index.scss";
+@import "../mod-comment/index.scss";
+@import "../mod-error/index.scss";
+@import "../mod-feedbook/index.scss";
+@import "../mod-feedgame/index.scss";
+@import "../mod-feedTV/index.scss";
+@import "../mod-header/index.scss";
+@import "../mod-footer/index.scss";
+@import "../mod-hot--circles/index.scss";
+@import "../mod-list/index.scss";
+@import "../mod-loading/index.scss";
+@import "../mod-more/index.scss";
+@import "../mod-nav/index.scss";
+@import "../mod-report/index.scss";
+@import "../mod-search/index.scss";
+@import "../mod-share/index.scss";
+@import "../mod-subnav/index.scss";
+@import "../mod-tag/index.scss";
+@import "../mod-taginline/index.scss";
+@import "../mod-view--all/index.scss";
+@import "../mod-vote/index.scss";

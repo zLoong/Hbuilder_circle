@@ -1,0 +1,165 @@
+.G-ico {
+    display: inline-block;
+    font-family: 'tagIcon';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: normal;
+    vertical-align: baseline;
+    &:before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    &-gift:before {content: "\0040";}
+    &-location:before {content: "\0041";}
+    &-reflesh:before {content: "\0044";}
+    &-arr-back:before {content: "\0045";}
+    &-search:before {content: "\0046";}
+    &-del:before { content: "\0047";}
+    &-del-life:before { content: "\0055";}    
+    &-x:before {content: "\0060";}
+    &-x-fill:before {content: "\0048";}
+    &-add:before {content: "\0049";}
+    &-usrface:before {content: "\004A";}
+    &-channel:before {content: "\004B";}
+    &-play-vd:before{ content: "\004C";}
+    &-play-gif:before{content: "\004D";}
+    &-history:before {content: "\004E";}
+    &-arr-down:before { content: "\004F";}
+    &-arr-up:before {content: "\0050";}
+    &-right:before {  content: "\0051";}
+    &-sort-up:before { content: "\0052";}
+    &-sort-down:before {-webkit-transform-origin: 43% 55%;-webkit-transform: rotate(180deg);content: "\0052";}
+    &-share-weixin:before { content: "\002B";}
+    &-share-friend:before {  content: "\007C";}
+    &-share-qq:before {content: "\007D";}
+    &-share-qzone:before {content: "\007E";}
+    &-sigh:before {content: "\007B";}
+    &-like-full:before {content: "\0074";}
+    &-like:before { content: "\0075";}
+    &-recommend:before {content: "\0076";}
+    &-bookcomment:before { content: "\0078";}
+    &-share:before {content: "\005E";}
+    &-edit:before {content: "\002E";}
+    &-logo-zx:before {content: "\0066";}
+    &-logo-wx:before {content: "\0067";}
+    &-logo-book:before {content: "\0068";}
+    &-logo-vd:before { content: "\0069";}
+    &-imgerror:before {content: "\003A";}
+    &-headset:before {content: "\003B";}
+    &-catalog:before {content: "\003E";}
+    &-to-top:before { content: "\0053";}
+    &-book-tag:before { content: "\0054";}
+    &-page-start:before { content: "\0056";}
+    &-page-end:before { content: "\0057";}
+    &-page-pre:before {content: "\0058";}
+    &-page-next, &-arr-r {&:before {content: "\0059";}}
+    &-copyright:before {content: "\005A";}
+    &-coin:before {content: "\0061";}
+    &-warn:before{content: "\0067";}
+    &-up-empty:before{content: "\006A";}
+    &-menu:before{content: "\006B";}
+    &-zan:before {content: "\0029";}
+    &-cai:before {content: "\0026";}
+    &-horn:before {content: "\0072";}
+    &-favor:before {content: "\0073";}
+    &-up:before{content: "\0062";}
+    &-tbs:before{content: "\005F";}
+    &-fun:before{content: "\0022";}
+    &-round-right:before{content: "\0071";}
+    &-recommand:before{content: "\0024";}
+    &-Qmi:before{content: "\0025";}
+
+    &-lv-star:before{content: "\00C0";}
+    &-lv-5:before{content: "\00C1";}
+    &-lv-10:before{content: "\00C2";}
+    &-logined:before{content: "\00C3";}
+    &-science:before{content: "\00C4";}
+    &-collection:before { content: "\00C5";}
+    &-insurance:before{content: "\00C6";}
+    &-godwork:before{content: "\00C7";}
+    &-sellwell:before{content: "\00C8";}
+    &-guarantee:before{content: "\00C9";}
+    &-postcircle:before{content: "\00CA";}
+    &-keyboard:before{content: "\0100";}
+    &-face:before{content: "\0101";}
+    &-suc:before{content: "\00A1";}
+    &-fit:before{content: "\00A2";}
+    &-unfit:before{content: "\00A3";}
+    &-movie:before{content: "\00A4";}
+    &-hotel:before{content: "\00A5";}
+    &-train:before{content: "\00A6";}
+    &-recharge:before{content: "\00A7";}
+    &-chinesecalendar:before{content: "\00A8";}
+    &-shopping:before{content: "\00A9";}
+    &-secondhand:before{content: "\00AA";}
+    &-rent:before{content: "\00AB";}
+    &-cup:before{content: "\00AC";}
+    &-recruit:before{content: "\00B1";}
+    &-all:before{content: "\00AE";}
+    &-quotel:before{content: "\201C";}
+    &-quoter:before{content: "\201D";}
+    &-end:before{content: "\00CB";}
+    &-end:before{content: "\00B4";}
+    &-bus:before{content: "\00B5";}
+    &-taxi:before{content: "\00B6";}
+    &-coupon:before{content: "\00B7";}
+    &-recommand2:before{content: "\00B8";}
+}
+
+.G-ico-down{
+    &:before{
+        content: "\0062";
+        -webkit-transform: rotate(180deg);
+        -webkit-transform-origin: 50% 65%;
+    }
+}
+.G-ico-down-empty{
+    &:before{
+        content: "\006A";
+        -webkit-transform: rotate(180deg);
+        -webkit-transform-origin: 50% 65%;
+    }
+}
+.G-ico-order {
+    &:before {
+        content: "\0063";
+    }
+    &::after {
+        content: "\0064";
+    }
+}
+.mark {
+    .G-ico-like {
+        &:before {
+            content: "\0074";
+        }
+    }
+    .G-ico-favor {
+        &:before {
+            content: "\007A";
+        }
+    }
+}
+/*
+21 !    EXCLAMATION MARK
+23 #   NUMBER SIGN
+24 $    Dolar sign
+25 %   PERCENT SIGN
+26 &   AMPERSAND
+27 )     RIGHT PARENTHESIS
+28 (     LEFT PARENTHESIS
+2A *
+2b +
+3f ?
+3c <
+3d =
+3e >
+5b [
+5c \
+5d ]
+5E _
+*/

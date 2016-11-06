@@ -1,0 +1,318 @@
+/*公共函数*/
+/*
+   #fix doble screen border
+   #how to use: in other class wirte @include G-border-bottom(#ccc); to extend
+   #auther xiaoweili@tencent.com
+*/
+
+$imported-modules: () !default;
+/// Module export mixin
+/// This mixin helps making sure a module is imported once and only once.
+/// @access public
+/// @param {String} $name - Name of exported module
+/// @param {Bool} $warn [true] - Warn when module has been already imported
+/// @require $imported-modules
+@mixin exports($name, $warn: true) {
+    @if (index($imported-modules, $name)==null) {
+        $imported-modules: append($imported-modules, $name) !global;
+        @content;
+    }
+    @else if $warn==true {
+        // @warn "Module `#{$name}` has already been imported.";
+    }
+}
+
+//垂直居中webkitbox
+@mixin webkitBox($flex: 1) {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: $flex;
+    -webkit-flex: $flex;
+    flex: $flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+//超出隐藏省略号
+@mixin textOverflow($clamp: 1) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $clamp;
+    -webkit-box-orient: vertical;
+}
+
+//占位 是否可控高度：false（无法控制min-height,但没有多余结构） true(可控制min-height，但要增加结构)
+@mixin proporBox($arg:1, $type:false, $ele:':before'){
+    position: relative;
+    @if $type == true {
+        &#{$ele}{
+            content: '';
+            display: block;
+            width: 100%;
+            padding-top: percentage($arg);
+        }
+    }@else{
+        padding-top: percentage($arg);
+    }   
+}
+
+//svg line
+@mixin svgLine($color: $D5,$width:100%, $height:100%){
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><rect width="#{$width}" height="#{$height}" fill="#{$color}"/></svg>');
+}
+
+
+@mixin borderSvg($direction, $size, $borderColor ) {
+    position: relative;
+    &::after {
+        content:"";
+        position: absolute;
+        pointer-events: none;
+        @if $direction == top {
+            height: $size;
+            width: 100%;
+            top: 0;
+            left: 0;
+            @include svgLine($borderColor, 100%, 50%);
+        } 
+        @else if $direction == right {
+            width: $size;
+            height: 100%;
+            top: 0;
+            right: 0;
+            @include svgLine($borderColor, 50%, 100%);
+        } 
+        @else if $direction == bottom {
+            height: $size;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            @include svgLine($borderColor, 100%, 50%);
+        } 
+        @else if $direction == left {
+            width: $size;
+            height: 100%;
+            top: 0;
+            left: 0;
+            @include svgLine($borderColor, 50%, 100%);
+        }
+    }
+}
+
+// 小三角，方向，大小，颜色
+@mixin triangle($direction, $size, $borderColor ) {
+    content:"";
+    height: 0;
+    width: 0;
+    @if $direction == top {
+        border-bottom:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+    } 
+    @else if $direction == right {
+        border-left:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    } 
+    @else if $direction == bottom {
+        border-top:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+    } 
+    @else if $direction == left {
+        border-right:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    }
+}
+
+
+/*定义颜色的1px边框, 不定义颜色请使用static_class*/
+/* 改造：增加一个参数，用之前方式实现1px边框的样式并且可配置两侧是否顶到头*/
+
+@mixin border-bottom($color:D5, $boolean: true) {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        bottom: 0;
+        @extend %G-bgcolor-#{$color};
+        -webkit-transform: scaleY(0.5);
+        -webkit-transform-origin: 0 100%;
+        pointer-events:none;
+    }
+    @if $boolean {
+        &::after {
+            left: 0;
+            right: 0;
+        }
+    }
+    @else {
+        &::after {
+            @extend %G-left-32;
+            @extend %G-right-32;
+        }
+    }
+}
+
+@mixin border-top($color:D5, $boolean: true) {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        top: 0;
+        @extend %G-bgcolor-#{$color};
+        -webkit-transform: scaleY(0.5);
+        -webkit-transform-origin: 0 100%;
+        pointer-events:none;
+    }    
+    @if $boolean {
+        &::after {
+            left: 0;
+            right: 0;
+        }
+    }
+    @else {
+        &::after {
+            @extend %G-left-32;
+            @extend %G-right-32;
+        }
+    }
+}
+
+@mixin border-right($color) {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        @extend %G-bgcolor-#{$color};
+        -webkit-transform: scaleX(0.5);
+        -webkit-transform-origin: 0 100%;
+        pointer-events:none;
+    }
+}
+
+@mixin border-left($color) {
+    &::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        @extend %G-bgcolor-#{$color};
+        -webkit-transform: scaleX(0.5);
+        -webkit-transform-origin: 0 100%;
+        pointer-events:none;
+    }
+}
+
+@mixin border-tb($color) {
+    position: relative;
+    &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 0;
+        top: 0;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-bottom-style: solid;
+        @extend %G-bdcolor-#{$color};
+        -webkit-transform: scale(.5, .5);
+        -webkit-transform-origin: 0 0;
+        pointer-events: none;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+}
+
+@mixin border($color: D9, $radius:0) {
+    border-radius: $radius/2;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 0;
+        top: 0;
+        border-width: 1px;
+        border-style: solid;
+        -webkit-border-radius: #{$radius};
+        @extend %G-bdcolor-#{$color};
+        -webkit-transform: scale(.5, .5);
+        -webkit-transform-origin: 0 0;
+        pointer-events:none;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+}
+
+@mixin G-clearfix {
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+}
+
+@mixin iphone-screen() {
+    @media only screen and (min-width: 360px) and (max-width: 480px) and (-webkit-device-pixel-ratio: 2), only screen and (min-device-width: 375px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 3) {
+        @content
+    }
+}
+
+@mixin big-screen() {
+    @media only screen and (min-width: 480px) and(max-width: 540px) and (-webkit-device-pixel-ratio: 2), only screen and (min-width: 480px) and(max-width: 540px) and (-webkit-device-pixel-ratio: 3) {
+        @content
+    }
+}
+
+@mixin G-padding($top:0, $right:0, $bottom:0, $left:0) {
+    & {
+        padding: $top $right $bottom $left;
+    }
+    @include iphone-screen() {
+        & {
+            padding: $top*1.125 $right*1.125 $bottom*1.125 $left*1.125;
+        }
+    }
+    @include big-screen() {
+        & {
+            padding: $top*1.5 $right*1.5 $bottom*1.5 $left*1.5;
+        }
+    }
+}
+
+@mixin G-margin($top:0, $right:0, $bottom:0, $left:0) {
+    & {
+        margin: $top $right $bottom $left;
+    }
+    @include iphone-screen() {
+        & {
+            margin: $top*1.125 $right*1.125 $bottom*1.125 $left*1.125;
+        }
+    }
+    @include big-screen() {
+        & {
+            margin: $top*1.5 $right*1.5 $bottom*1.5 $left*1.5;
+        }
+    }
+}
